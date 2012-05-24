@@ -1,0 +1,43 @@
+<div class="navbar navbar-fixed-top" tal:define="app_url view.application_url">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="${app_url}">${view.api.blog.title}</a>
+      <tal:block tal:condition="not view.isAnon">
+	<ul class="nav pull-right">
+	  <li class="active">
+	      <a href="${app_url}">
+  		${view.user.name or view.user.login}:
+	      </a>
+	  </li>
+	  <li>
+	    <a href="${app_url}/posts/add.html">New Post</a>
+	  </li>
+      <li>
+        <a href="${app_url}/dashboard.html">Dashboard</a>
+      </li>
+	  <li>
+	    <a href="${app_url}/logout.html">Logout</a>
+	  </li>
+	</ul>
+      </tal:block>
+      
+    <ul class="nav pull-right" tal:condition="view.isAnon">
+	  <li>
+	    <a href="${app_url}/posts">Archive</a>
+	  </li>
+	  <li class="active">
+	    <a href="${app_url}/login.html">Sign in</a>
+	  </li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+<div class="inner">
+  <div class="container">
+  
+    ${structure: view.render_messages()}
+    
+    ${structure: wrapped_content}
+  </div>
+</div>

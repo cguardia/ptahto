@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head tal:define="root getattr(request, 'root', None)">
+    <title>${getattr(root, 'title', '')}</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+    ${request.include_library('curl', 'bootstrap')}
+    ${structure: request.render_includes()}
+    ${structure: request.render_amd_includes()}
+    <link type="text/css" rel="stylesheet" 
+          href="${request.static_url('ptahto:static/app.css')}" />
+
+  </head>
+
+  <body>
+    <!-- Rendered content that is beeing passed to layout.render method -->
+    ${structure: wrapped_content}
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" tal:define="posts api.recent_posts()">
+
+  <title>${api.blog.title}</title>
+  <link href="${request.application_url}"/>
+  <updated tal:condition="posts">${posts[0].modified.isoformat()}</updated>
+  <author>
+  <name tal:condition="posts">${posts[0].creator}</name>
+  </author>
+  <id>${request.application_url}</id>
+
+  <entry tal:repeat="post posts">
+    <title>${post.title}</title>
+    <link href="${request.route_url('view-post', id=post.__id__)}"/>
+    <id>${request.route_url('view-post', id=post.__id__)}</id>
+    <updated>${post.modified.isoformat()}</updated>
+    <content>${post.text}</content>
+  </entry>
+
+</feed>

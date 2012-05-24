@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel tal:define="posts api.recent_posts()">
+<title>${api.blog.title}</title>
+<description>${api.blog.tagline}</description>
+<link>${request.application_url}</link>
+<lastBuildDate>${api.now}</lastBuildDate>
+<pubDate tal:condition="posts">${api.to_rfc822(posts[0].modified)}</pubDate>
+
+<item tal:repeat="post posts">
+<title>${post.title}</title>
+<description>${post.text}</description>
+<link>${request.route_url('view-post', id=post.__id__)}</link>
+<guid isPermaLink="false">${request.route_url('view-post', id=post.__id__)}</guid>
+<pubDate>${api.to_rfc822(post.modified)}</pubDate>
+</item>
+
+</channel>
+</rss>

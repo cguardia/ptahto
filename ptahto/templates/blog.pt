@@ -1,0 +1,25 @@
+<h3>
+  ${api.blog.tagline}
+</h3>
+<div class="post-summary" tal:repeat="post api.recent_posts()">
+    <h3><a href="${request.route_url('view-post', id=post.__id__)}">${post.title}</a></h3>
+    <div>Posted on ${post.modified.strftime('%x')} by ${post.creator}</div>
+    <p>${structure: post.text}</p>
+    <div tal:condition="api.blog.disqus"><a href="${request.route_url('view-post', id=post.__id__)}#disqus_thread" data-disqus-identifier="ptahto_${post.__id__}">Comments</a></div>
+</div>
+
+<tal:block condition="api.blog.disqus">
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = '${api.blog.disqus}';
+    var disqus_developer = 1;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</tal:block>

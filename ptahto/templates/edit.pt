@@ -1,0 +1,5 @@
+<div class="content">
+  ${structure: rendered_messages}
+  ${structure: rendered_form}
+</div>
+

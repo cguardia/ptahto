@@ -1,0 +1,10 @@
+<div class="row content">
+
+  <div class="span13 columns">
+    ${structure: wrapped_content}
+  </div>
+
+  <div class="span3 columns">
+  </div>
+
+</div>
